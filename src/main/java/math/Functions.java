@@ -35,24 +35,24 @@ public class Functions {
         return new Point(x, y);
     }
 
-    public static List<PointTuple> GeneratePointsForInnerCircle(Integer centerX, Integer centerY, Integer radius) {
+    public static List<PointTuple> GeneratePointsForInnerCircle(Integer centerX, Integer centerY, Double radius) {
         List<PointTuple> tupleList = new ArrayList<>();
         List<Integer> sections = Arrays.asList(4, 8, 14, 23, 27, 31);
 
         double singleSectionAngle = 360/41d;
-        Point firstSectionPoint1 = new Point(CalculateX((double) radius, singleSectionAngle * 4, centerX), CalculateY((double) radius, singleSectionAngle * 4, centerY));
-        Point firstSectionPoint2 = new Point(CalculateX((double) radius, -singleSectionAngle * 4, centerX), CalculateY((double) radius, -singleSectionAngle * 4, centerY));
+        Point firstSectionPoint1 = new Point(CalculateX(radius, singleSectionAngle * 4, centerX), CalculateY(radius, singleSectionAngle * 4, centerY));
+        Point firstSectionPoint2 = new Point(CalculateX(radius, -singleSectionAngle * 4, centerX), CalculateY(radius, -singleSectionAngle * 4, centerY));
         tupleList.add(new PointTuple(firstSectionPoint1, firstSectionPoint2));
 
         for (int i = 0; i < sections.size(); i++) {
             Point point1;
             Point point2;
             if (i == sections.size() - 1) {
-                point1 = new Point(CalculateX((double) radius, -singleSectionAngle * sections.get(i), centerX), CalculateY((double) radius, -singleSectionAngle * sections.get(i), centerY));
-                point2 = new Point(CalculateX((double) radius, singleSectionAngle * 4, centerX), CalculateY((double) radius, singleSectionAngle * 4, centerY));
+                point1 = new Point(CalculateX(radius, -singleSectionAngle * sections.get(i), centerX), CalculateY(radius, -singleSectionAngle * sections.get(i), centerY));
+                point2 = new Point(CalculateX(radius, singleSectionAngle * 4, centerX), CalculateY(radius, singleSectionAngle * 4, centerY));
             } else {
-                point1 = new Point(CalculateX((double) radius, -singleSectionAngle * sections.get(i), centerX), CalculateY((double) radius, -singleSectionAngle * sections.get(i), centerY));
-                point2 = new Point(CalculateX((double) radius, -singleSectionAngle * sections.get(i + 1), centerX), CalculateY((double) radius, -singleSectionAngle * sections.get(i + 1), centerY));
+                point1 = new Point(CalculateX(radius, -singleSectionAngle * sections.get(i), centerX), CalculateY(radius, -singleSectionAngle * sections.get(i), centerY));
+                point2 = new Point(CalculateX(radius, -singleSectionAngle * sections.get(i + 1), centerX), CalculateY(radius, -singleSectionAngle * sections.get(i + 1), centerY));
             }
             tupleList.add(new PointTuple(point1, point2));
         }
@@ -60,32 +60,32 @@ public class Functions {
         return tupleList;
     }
 
-    public static List<PointQuadruple> GeneratePointsForMiddleCircle(Integer centerX, Integer centerY, Integer radius) {
+    public static List<PointQuadruple> GeneratePointsForMiddleCircle(Integer centerX, Integer centerY, Double radius) {
         List<PointQuadruple> quadruplesList = new ArrayList<>();
         double singleSectionAngle = 360/41d;
 
         for (int i = 0; i < 41; i++) {
             Point p1, p2, p3, p4;
-            p1 = new Point(CalculateX((double) radius, -singleSectionAngle * i, centerX), CalculateY((double) radius, -singleSectionAngle * i, centerY));
-            p2 = new Point(CalculateX((double) (radius * 2), -singleSectionAngle * i, centerX), CalculateY((double) (radius * 2), -singleSectionAngle * i, centerY));
-            p3 = new Point(CalculateX((double) (radius * 2), -singleSectionAngle * (i + 1), centerX), CalculateY((double) (radius * 2), -singleSectionAngle * (i + 1), centerY));
-            p4 = new Point(CalculateX((double) radius, -singleSectionAngle * (i + 1), centerX), CalculateY((double) radius, -singleSectionAngle * (i + 1), centerY));
+            p1 = new Point(CalculateX(radius, -singleSectionAngle * i, centerX), CalculateY(radius, -singleSectionAngle * i, centerY));
+            p2 = new Point(CalculateX(radius * 2, -singleSectionAngle * i, centerX), CalculateY(radius * 2, -singleSectionAngle * i, centerY));
+            p3 = new Point(CalculateX(radius * 2, -singleSectionAngle * (i + 1), centerX), CalculateY(radius * 2, -singleSectionAngle * (i + 1), centerY));
+            p4 = new Point(CalculateX(radius, -singleSectionAngle * (i + 1), centerX), CalculateY(radius, -singleSectionAngle * (i + 1), centerY));
             quadruplesList.add(new PointQuadruple(p1, p2, p3, p4));
         }
 
         return quadruplesList;
     }
 
-    public static List<PointQuadruple> GeneratePointsForOuterCircle(Integer centerX, Integer centerY, Integer radius) {
+    public static List<PointQuadruple> GeneratePointsForOuterCircle(Integer centerX, Integer centerY, Double radius) {
         List<PointQuadruple> quadruplesList = new ArrayList<>();
         double singleSectionAngle = 360/82d;
 
         for (int i = 0; i < 82; i++) {
             Point p1, p2, p3, p4;
-            p1 = new Point(CalculateX((double) (radius * 2), -singleSectionAngle * i, centerX), CalculateY((double) (radius * 2), -singleSectionAngle * i, centerY));
-            p2 = new Point(CalculateX((double) (radius * 3), -singleSectionAngle * i, centerX), CalculateY((double) (radius * 3), -singleSectionAngle * i, centerY));
-            p3 = new Point(CalculateX((double) (radius * 3), -singleSectionAngle * (i + 1), centerX), CalculateY((double) (radius * 3), -singleSectionAngle * (i + 1), centerY));
-            p4 = new Point(CalculateX((double) (radius * 2), -singleSectionAngle * (i + 1), centerX), CalculateY((double) (radius * 2), -singleSectionAngle * (i + 1), centerY));
+            p1 = new Point(CalculateX(radius * 2, -singleSectionAngle * i, centerX), CalculateY(radius * 2, -singleSectionAngle * i, centerY));
+            p2 = new Point(CalculateX(radius * 3, -singleSectionAngle * i, centerX), CalculateY(radius * 3, -singleSectionAngle * i, centerY));
+            p3 = new Point(CalculateX(radius * 3, -singleSectionAngle * (i + 1), centerX), CalculateY(radius * 3, -singleSectionAngle * (i + 1), centerY));
+            p4 = new Point(CalculateX(radius * 2, -singleSectionAngle * (i + 1), centerX), CalculateY(radius * 2, -singleSectionAngle * (i + 1), centerY));
             quadruplesList.add(new PointQuadruple(p1, p2, p3, p4));
         }
 

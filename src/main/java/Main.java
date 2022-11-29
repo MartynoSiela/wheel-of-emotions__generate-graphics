@@ -18,7 +18,7 @@ public class Main {
 
         Integer c_x = 100;
         Integer c_y = 100;
-        Integer r = 30;
+        Double r = 30d;
 
         String filePathSVG = null;
         String filePathXML = null;
