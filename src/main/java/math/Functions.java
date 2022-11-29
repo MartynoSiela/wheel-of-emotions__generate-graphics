@@ -40,19 +40,19 @@ public class Functions {
         List<Integer> sections = Arrays.asList(4, 8, 14, 23, 27, 31);
 
         double singleSectionAngle = 360/41d;
-        Point firstSectionPoint1 = new Point(CalculateX(Double.valueOf(radius), singleSectionAngle * 4, centerX), CalculateY(Double.valueOf(radius), singleSectionAngle * 4, centerY));
-        Point firstSectionPoint2 = new Point(CalculateX(Double.valueOf(radius), -singleSectionAngle * 4, centerX), CalculateY(Double.valueOf(radius), -singleSectionAngle * 4, centerY));
+        Point firstSectionPoint1 = new Point(CalculateX((double) radius, singleSectionAngle * 4, centerX), CalculateY((double) radius, singleSectionAngle * 4, centerY));
+        Point firstSectionPoint2 = new Point(CalculateX((double) radius, -singleSectionAngle * 4, centerX), CalculateY((double) radius, -singleSectionAngle * 4, centerY));
         tupleList.add(new PointTuple(firstSectionPoint1, firstSectionPoint2));
 
         for (int i = 0; i < sections.size(); i++) {
             Point point1;
             Point point2;
             if (i == sections.size() - 1) {
-                point1 = new Point(radius * Math.cos(-singleSectionAngle * sections.get(i) * Math.PI / 180) + centerX, radius * Math.sin(-singleSectionAngle * sections.get(i) * Math.PI / 180) * (-1) + centerY);
-                point2 = new Point(radius * Math.cos(singleSectionAngle * 4 * Math.PI / 180) + centerX, radius * Math.sin(singleSectionAngle * 4 * Math.PI / 180) * (-1) + centerY);
+                point1 = new Point(CalculateX((double) radius, -singleSectionAngle * sections.get(i), centerX), CalculateY((double) radius, -singleSectionAngle * sections.get(i), centerY));
+                point2 = new Point(CalculateX((double) radius, singleSectionAngle * 4, centerX), CalculateY((double) radius, singleSectionAngle * 4, centerY));
             } else {
-                point1 = new Point(radius * Math.cos(-singleSectionAngle * sections.get(i) * Math.PI / 180) + centerX, radius * Math.sin(-singleSectionAngle * sections.get(i) * Math.PI / 180) * (-1) + centerY);
-                point2 = new Point(radius * Math.cos(-singleSectionAngle * sections.get(i + 1) * Math.PI / 180) + centerX, radius * Math.sin(-singleSectionAngle * sections.get(i + 1) * Math.PI / 180) * (-1) + centerY);
+                point1 = new Point(CalculateX((double) radius, -singleSectionAngle * sections.get(i), centerX), CalculateY((double) radius, -singleSectionAngle * sections.get(i), centerY));
+                point2 = new Point(CalculateX((double) radius, -singleSectionAngle * sections.get(i + 1), centerX), CalculateY((double) radius, -singleSectionAngle * sections.get(i + 1), centerY));
             }
             tupleList.add(new PointTuple(point1, point2));
         }
